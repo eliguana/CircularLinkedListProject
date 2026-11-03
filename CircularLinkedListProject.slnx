@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="CircularLinkedListProject/CircularLinkedListProject.vcxproj" Id="a31ca292-5d18-4584-90b0-84949a9a1073" />
+</Solution>
