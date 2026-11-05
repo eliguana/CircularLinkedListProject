@@ -37,7 +37,7 @@ Briefly explain the time complexity of adding, searching, removing, moving, and 
 #include <string>
 #include <cstdlib>
 #include <ctime>
-#include <SFML/Graphics.hpp>
+
 using namespace std;
 
 //Part 1: Circular Linked List
@@ -63,16 +63,15 @@ void traversalInLoop(Node* head) {
 
 	Node* current = head;
 	int k = 10;
-	while (k--) {
+	while (current != nullptr && k--) {
 		cout << current->data << " ";
 		current = current->next;
-		// Stop when we loop back to the head
 	}
 	cout << endl;
 }
 
 // Insertion at the start of a circular linked list
-void insertAtStart(Node*& head, int value) {
+void insertAtStart(Node*& head, int value) {	//reads from right to left, so head is passed by reference to update the head pointer in the calling function
 	Node* newNode = new Node(value);
 	if (head == nullptr) {
 		newNode->next = newNode; // Point to itself if the list is empty
@@ -305,29 +304,8 @@ public:
 	}
 };
 
-int main()
-{
-	sf::RenderWindow window(
-		sf::VideoMode({ 800, 600 }),
-		"SpongeBob Monopoly"
-	);
 
-	while (window.isOpen())
-	{
-		while (const std::optional event = window.pollEvent())
-		{
-			if (event->is<sf::Event::Closed>())
-				window.close();
-		}
-
-		window.clear();
-		window.display();
-	}
-
-	return 0;
-}
-
-/*int main() {
+int main() {
 
 	//Testing:
 	cout << "Testing cases: " << endl;
@@ -421,6 +399,6 @@ int main()
 		{
 			cout << "Property not found." << endl;
 		}
-	}*/
+	}
 }
 

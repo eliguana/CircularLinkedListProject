@@ -1,1 +1,63 @@
 Notes:
+
+Linked List: a data structure that stores information in separate objects called nodes
+    - nodes are connected using pointers, last node points to nullptr (where travesal ends)
+        - Data: information stored in the node
+        - Pointer: An address that tells the program where the next node is located
+
+Circular Linked List: similar to linked list but instead the last node points back to the first node
+
+-----------------------------------------------------------------------------
+
+Node Class:
+
+class Node {
+public:
+    int data;       //stores an integer
+    Node* next;     //Pointer to another Node
+
+    Node(int val) : data(val), next(nullptr) {} 
+    };
+    
+    /****************************
+    -> line 17: same as writing: 
+    Node(int val) {  //constructor
+    data = val;      //initializes the data
+    next = nullptr;  //initially points to nothing
+    
+    ******************************/
+
+    void traversal(Node* head) {
+    Node* current = head;           //Start at first Node
+
+    do {
+        cout << current->data << " ";   // "current->data" accesses the data stored in the current node
+        current = current->next;    //Moves to the next node
+    } while (current != head);      
+    
+    // "!=" -> not equal operator, this operator checks to see if the pointer has traveled all the way around the circle and arrived back to the starting node. A long as current!=head is true, the loop keeps running, printing, and advancing to the next node. The moment it evaluates to false, the operator recognizes every node has been visited, and loop ends
+
+    //do-while loop forces the pointer to move at least once before != and checks if it has completed the loop and returned to the head.
+
+    cout << endl;
+}
+
+void traversalInLoop(Node* head) {
+    Node* current = head;
+    int k = 10;                 // 10 nodes
+
+    while (k--) {              
+        /********************************************************************
+         // " -- " is the decrement operator, which is used to decrease the value of a variable by 1
+         // k-- acts as a loop counter that controls how many steps the traversal takes
+        ********************************************************************/
+
+
+        cout << current->data << " ";
+        current = current->next;
+    }
+
+    cout << endl;
+}
+}
+
