@@ -32,7 +32,7 @@ public:
 
     do {
         cout << current->data << " ";   // "current->data" accesses the data stored in the current node
-        current = current->next;    //Moves to the next node
+        current = current->next;        //Moves to the next node
     } while (current != head);      
     
     // "!=" -> not equal operator, this operator checks to see if the pointer has traveled all the way around the circle and arrived back to the starting node. A long as current!=head is true, the loop keeps running, printing, and advancing to the next node. The moment it evaluates to false, the operator recognizes every node has been visited, and loop ends
@@ -44,20 +44,109 @@ public:
 
 void traversalInLoop(Node* head) {
     Node* current = head;
-    int k = 10;                 // 10 nodes
+    int k = 10;                 // will print 10 nodes
 
-    while (k--) {              
+    	while (current != nullptr && k--) {
+            
+
         /********************************************************************
          // " -- " is the decrement operator, which is used to decrease the value of a variable by 1
-         // k-- acts as a loop counter that controls how many steps the traversal takes
+         // k-- acts as a loop counter that controls how many steps the traversal takes, repeats while the previous value of k is nonzero
         ********************************************************************/
 
-
+        //Loop stops if k reaches 0 or if we hit the end of the list (nullptr)
         cout << current->data << " ";
-        current = current->next;
+        current = current->next;        
+        
+       /********************************************************************
+       current is a pointer holding a memory address, this arrow operator then grabs the mem address of the next node and reassigns it to current,
+        which physically moves pointer to next link in the chain
+        ********************************************************************/
     }
-
     cout << endl;
 }
+
+void insertAtStart(Node*& head, int value) {	
+    
+    /********************************************************************
+    // ^^reads from right to left, so head is passed by reference
+    // to update/change the head pointer in the main(). " *& " places 
+    // a reference on a pointer type declaration
+    ********************************************************************/
+	
+    Node* newNode = new Node(value);            //newNode is a pointer to Node
+	if (head == nullptr) {                      //Checks if head is equal to nullptr
+		newNode->next = newNode;                // Point to itself if the list is empty
+		head = newNode;                         //Assigns value of head to newNode
+		return;
+	}
+	Node* current = head;
+	while (current->next != head) {
+		current = current->next;
+	}
+	current->next = newNode;                    //changing the link from the last node to the head node
+	newNode->next = head;                       //making the new node point to the head node
+	head = newNode;                             //updating the head pointer to point to the new node
+}
+
+void insertAtEnd.... //identical to insertAtStart except you don't update head. New node becomes new last nodes. 
+
+deleteAtStart/deleteAtend:
+both carefully handle 3 cases:
+    1) empty list
+    2) only one node left
+    3) multiple nodes
+
+Monopoly Board:
+
+addProperty functon is the same as insertAtEnd, builds the circular board
+
+printProperties walks the circle once and prints every property's name, cost, and owner
+
+searchProperty walks the circle looking for a matching name. Returns a pointer to the node(or nullptr if not found)
+
+removeProperty: more complex because it has to handle
+-empty list
+-only one node
+-deleting the head
+-deleing a node in the middle/end
+It returns true if it successfully removed the property
+
+summary of all paths:
+
+if list is empty: do nothing : returns false
+if only one node + name matches : delete it, set head = nullptr : returns true
+if only one node + name does not match : do nothing : returns flase
+if multiple nodes + delete head : find tail, rewire, move head, and delete : return true
+if multiple nodes + delete middle/end : skip over the node and delete it : returns true
+if name not found : do nothing : returns false
+
+
+sim: 
+
+int dice = rand()% 6 + 1 ;
+
+//rand() generates a random integer
+// %6 limits the remainder to a number between 0 and 5
+// +1 shifts the result to a number between 1 and 6
+
+if (move % 2 == 0)
+
+//check whether the current move number is divisible by 2 without the remainder
+// if it is, player 1 takes their turn
+// if it isn't player 2 takes their turn
+
+Move	move % 2	Result	Player
+0	            0	Even	Player 1
+1	            1	Odd	    Player 2
+2	            0	Even	Player 1
+3	            1	Odd	    Player 2
+4	            0	Even	Player 1
+5	            1	Odd	    Player 2
+6	            0	Even	Player 1
+7	            1	Odd	    Player 2
+8	            0	Even	Player 1
+9	            1	Odd	    Player 2
+
 }
 

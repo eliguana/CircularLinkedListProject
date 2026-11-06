@@ -212,24 +212,24 @@ ListNode* searchProperty(ListNode* head, string name) {
 // Function to remove a property from the circular linked list
 bool removeProperty(ListNode*& head, string propertyName) {
 
+	//case 1: empty list
 	if (head == nullptr)
 	{
 		return false;
 	}
+
+	//case 2: only one node in the list
 	if (head->nextptr == head) 
 	{
-		if (head->name == propertyName) 
+		if (head->name == propertyName) //if name matches, delete and set to nullptr
 		{
-
 			delete head;
 			head = nullptr;
-
 			return true;
 		}
-
 		return false;
 	}
-
+	//case 3: multiple node -> delete the head
 	ListNode* current = head;
 	if (head->name == propertyName) {
 
@@ -249,8 +249,7 @@ bool removeProperty(ListNode*& head, string propertyName) {
 
 		return true;
 	}
-
-	// Traverse the list to find the property to delete
+	// Case 4: multiple nodes - delete a node that is not the head
 	while (current->nextptr != head) {
 
 		if (current->nextptr->name == propertyName) {
